@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 
 public class Bot extends Label {
 
-    private final int HEIGHT, WIDTH;  // Alto y ancho del bot.
+    private final int HEIGHT, WIDTH, SPEED;  // Alto, ancho y velocidad del bot.
 
     /**
      * El constructor establece las medidas, la posicion en pantalla y el estilo del bot.
@@ -14,6 +14,7 @@ public class Bot extends Label {
 
         HEIGHT = 30;
         WIDTH = 15;
+        SPEED = 3;
 
         this.setLayoutX(PongGame.WIDTH - (WIDTH*2) - 10 );
 
@@ -39,12 +40,20 @@ public class Bot extends Label {
 
     /**
      * Este metodo se ejecuta en el bucle principal y sirve como "IA" para el bot.
-     * De momento solo detecta cuando la pelota venga hacia este para moverse hacia ella.
+     * De momento detecta cuando la pelota viene hacia el, y dependiendo de su posicion en pantalla
+     * se mueve hacia arriba o hacia abajo.
      * @param ball Es la pelota.
      */
     public void render(Ball ball) {
         if (ball.getDirectionX() == 1) {
-            this.setLayoutY( ball.getLayoutY() );
+            if (this.getLayoutY() <= 0) this.setLayoutY(0);
+            if (this.getLayoutY() >= PongGame.HEIGHT - HEIGHT) this.setLayoutY(PongGame.HEIGHT - HEIGHT);
+            if (this.getLayoutY() == ball.getLayoutY()){
+                this.setLayoutY( ball.getLayoutY() );
+            }else {
+                if (this.getLayoutY() > ball.getLayoutY()) this.setLayoutY( this.getLayoutY() - SPEED );
+                else this.setLayoutY( this.getLayoutY() + SPEED );
+            }
         }
     }
 }
