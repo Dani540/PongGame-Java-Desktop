@@ -1,6 +1,6 @@
-package com.app.fxtestgame.secondVersion.entities;
+package com.app.fxtestgame.game.components.entities;
 
-import com.app.fxtestgame.secondVersion.Game;
+import com.app.fxtestgame.game.PongGame;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -71,10 +71,10 @@ public class Playable extends Player{
     }
 
     private void renderRangeOfMovement() {
-        boolean topMax = this.getLayoutY() >= Game.HEIGHT - HEIGHT*2.23;
+        boolean topMax = this.getLayoutY() >= PongGame.HEIGHT - HEIGHT*2.23;
         boolean topMin = this.getLayoutY() < 0;
 
-        if (topMax) this.setLayoutY( Game.HEIGHT - HEIGHT*2.23 );
+        if (topMax) this.setLayoutY( PongGame.HEIGHT - HEIGHT*2.23 );
         if (topMin) this.setLayoutY(0);
     }
 }

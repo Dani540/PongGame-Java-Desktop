@@ -1,4 +1,4 @@
-package com.app.fxtestgame.secondVersion.elements;
+package com.app.fxtestgame.game.components.elements;
 
 import javafx.scene.control.Label;
 

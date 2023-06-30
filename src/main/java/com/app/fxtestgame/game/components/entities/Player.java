@@ -1,6 +1,7 @@
-package com.app.fxtestgame.secondVersion.entities;
+package com.app.fxtestgame.game.components.entities;
 
-import com.app.fxtestgame.secondVersion.repo.StylesRepo;
+import com.app.fxtestgame.game.PongGame;
+import com.app.fxtestgame.game.repo.StylesRepo;
 import javafx.scene.control.Label;
 
 public abstract class Player extends Label implements Entity{
@@ -13,10 +14,12 @@ public abstract class Player extends Label implements Entity{
         SPEED = 5;
 
         initStyle();
+
+        this.setLayoutY(PongGame.HEIGHT/2 - HEIGHT*1.5);
     }
 
     private void initStyle() {
-        this.setStyle(StylesRepo.playerStyle(WIDTH, HEIGHT));
+        this.setStyle(StylesRepo.getPlayerStyle(WIDTH, HEIGHT));
     }
 
 

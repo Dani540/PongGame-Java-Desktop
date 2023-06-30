@@ -1,7 +1,6 @@
 package com.app.fxtestgame;
 
-import com.app.fxtestgame.pong.PongGame;
-import com.app.fxtestgame.secondVersion.Game;
+import com.app.fxtestgame.game.PongGame;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,6 +12,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        new Game(stage).startGame();
+        new PongGame(stage).startGame();
     }
 }

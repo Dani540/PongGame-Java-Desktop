@@ -1,7 +1,7 @@
-package com.app.fxtestgame.secondVersion.repo;
+package com.app.fxtestgame.game.repo;
 
 public class StylesRepo {
-    public static String paneStyle(double width, double height) {
+    public static String getPaneStyle(double width, double height) {
         return "-fx-background-color: lightcyan;" +
                 "-fx-max-height: " + height + ";" +
                 "-fx-min-height: " + height + ";" +
@@ -11,7 +11,7 @@ public class StylesRepo {
                 "-fx-pref-width: " + width + ";";
     }
 
-    public static String playerStyle(double width, double height) {
+    public static String getPlayerStyle(double width, double height) {
         return "-fx-background-color: white;" +
                 "-fx-border-width:     2;" +
                 "-fx-border-color:     black;" +
@@ -23,7 +23,7 @@ public class StylesRepo {
                 "-fx-pref-width:   " + width + ";";
     }
 
-    public static String ballStyle(double size) {
+    public static String getBallStyle(double size) {
         return "-fx-background-color: white;" +
                 "-fx-border-color:          black;" +
                 "-fx-border-width:          2;" +

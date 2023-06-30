@@ -1,18 +1,18 @@
-package com.app.fxtestgame.secondVersion;
+package com.app.fxtestgame.game;
 
-import com.app.fxtestgame.secondVersion.controller.GameController;
-import com.app.fxtestgame.secondVersion.repo.StylesRepo;
+import com.app.fxtestgame.game.controller.GameController;
+import com.app.fxtestgame.game.repo.StylesRepo;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Game {
+public class PongGame {
     public static final double HEIGHT=400, WIDTH=600;
     private final Stage stage;
     private GameController gameController;
     private AnchorPane anchorPane;
     private Scene scene;
-    public Game(Stage stage) {
+    public PongGame(Stage stage) {
         this.stage = stage;
     }
 
@@ -29,7 +29,7 @@ public class Game {
 
     private void initPane() {
         anchorPane = new AnchorPane();
-        anchorPane.setStyle(StylesRepo.paneStyle(WIDTH, HEIGHT));
+        anchorPane.setStyle(StylesRepo.getPaneStyle(WIDTH, HEIGHT));
     }
 
     private void initScene() {

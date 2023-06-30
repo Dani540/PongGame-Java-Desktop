@@ -1,12 +1,12 @@
-package com.app.fxtestgame.secondVersion.entities;
+package com.app.fxtestgame.game.components.entities;
 
-import com.app.fxtestgame.secondVersion.Game;
+import com.app.fxtestgame.game.PongGame;
 
 public class Bot extends Player{
     private Ball ball;
     private final double PERCENTAGE_OF_ERROR=0.66, MARGIN = 10;
     public Bot() {
-        this.setLayoutX(Game.WIDTH - WIDTH*2 - 8 );
+        this.setLayoutX(PongGame.WIDTH - WIDTH*2 - 8 );
     }
 
     @Override
@@ -17,7 +17,7 @@ public class Bot extends Player{
         if (ball.getDirectionX() == 1) {
             // Choque con bordes de la pantalla
             if (this.getLayoutY() <= MARGIN) this.setLayoutY(MARGIN);
-            if (this.getLayoutY() >= Game.HEIGHT - HEIGHT - MARGIN) this.setLayoutY(Game.HEIGHT - HEIGHT - MARGIN);
+            if (this.getLayoutY() >= PongGame.HEIGHT - HEIGHT - MARGIN) this.setLayoutY(PongGame.HEIGHT - HEIGHT - MARGIN);
 
             // Seguimiento de la pelota
             double targetY = ball.getLayoutY() - (HEIGHT / 2);

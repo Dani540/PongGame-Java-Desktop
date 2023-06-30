@@ -1,7 +1,9 @@
-package com.app.fxtestgame.secondVersion.entities;
+package com.app.fxtestgame.game.components.entities;
 
-import com.app.fxtestgame.secondVersion.Game;
-import com.app.fxtestgame.secondVersion.repo.StylesRepo;
+import com.app.fxtestgame.game.PongGame;
+import com.app.fxtestgame.game.components.elements.PointerTable;
+import com.app.fxtestgame.game.enums.Side;
+import com.app.fxtestgame.game.repo.StylesRepo;
 import javafx.scene.control.Label;
 
 import java.util.List;
@@ -9,10 +11,12 @@ import java.util.Random;
 
 public class Ball extends Label implements Entity{
     private final List<Entity> entities;
+    private final PointerTable pointerTable;
     private final double SIZE, ANGLE, OUTSIDERANGE, SPEEDINCREMENT;
     private double speed;
     private int directionX, directionY;
-    public Ball(Entity ... entities){
+    public Ball(PointerTable pointerTable, Entity ... entities){
+        this.pointerTable = pointerTable;
         this.entities = List.of(entities);
         SIZE = 15;
         speed = 4;
@@ -29,7 +33,7 @@ public class Ball extends Label implements Entity{
 
         restartPosition();
 
-        this.setStyle(StylesRepo.ballStyle(SIZE));
+        this.setStyle(StylesRepo.getBallStyle(SIZE));
     }
 
     @Override
@@ -54,24 +58,25 @@ public class Ball extends Label implements Entity{
 
     private void outsideX() {
         boolean topMax = this.getLayoutX() <= -OUTSIDERANGE;
-        boolean topMin = this.getLayoutX() >= Game.WIDTH + OUTSIDERANGE;
+        boolean topMin = this.getLayoutX() >= PongGame.WIDTH + OUTSIDERANGE;
 
         if (topMax || topMin){
             restartPosition();
             if (speed > 4) speed -= (speed *0.3);
+            pointerTable.addPoint( topMax? Side.RIGHT : Side.LEFT);
         }
     }
 
     private void outsideY() {
         boolean topMax = this.getLayoutY() <= 0;
-        boolean topMin = this.getLayoutY() >= Game.HEIGHT - SIZE*3.5;
+        boolean topMin = this.getLayoutY() >= PongGame.HEIGHT - SIZE*3.5;
 
         if (topMax || topMin) directionY = -directionY;
     }
 
     private void restartPosition() {
-        this.setLayoutX(Game.WIDTH / 2 - SIZE / 2);
-        this.setLayoutY(Game.HEIGHT / 2 - SIZE);
+        this.setLayoutX(PongGame.WIDTH / 2 - SIZE / 2);
+        this.setLayoutY(PongGame.HEIGHT / 2 - SIZE);
         directionX = new Random().nextBoolean()? -1 : 1;
         directionY = new Random().nextBoolean()? -1 : 1;
     }
