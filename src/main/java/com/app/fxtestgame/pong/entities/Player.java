@@ -126,8 +126,10 @@ public class Player extends Label {
      * @param anchorPane Es el panel princiapl.
      */
     private void rangeOfMovement(AnchorPane anchorPane) {
+
         boolean topMax = this.getLayoutY() > anchorPane.getHeight() - HEIGHT;
         boolean topMin = this.getLayoutY() < 0;
+
         if (topMax) this.setLayoutY(anchorPane.getHeight() - HEIGHT);
         if (topMin) this.setLayoutY(0);
     }
