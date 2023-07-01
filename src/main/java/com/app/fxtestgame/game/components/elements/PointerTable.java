@@ -11,7 +11,6 @@ public class PointerTable extends Label implements Element {
     private final double HEIGHT, WIDTH;
     private final int [] points;
     private final Pause pause;
-    private String statement;
 
     public PointerTable(Pause pause){
         this.pause = pause;
@@ -26,17 +25,14 @@ public class PointerTable extends Label implements Element {
     private void initStyle() {
         this.setStyle(StylesRepo.getLabelStyle(WIDTH, HEIGHT));
     }
-    @Override
-    public void refresh() {
-        this.setVisible(!pause.getPause());
-        this.setText( statement = points[0] + "    |   " + points[1]);
-    }
     public void addPoint(Side side){
         if (side.equals(Side.LEFT)) points[0]++;
         else points[1]++;
         refresh();
     }
-    public String getStatement() {
-        return statement;
+    @Override
+    public void refresh() {
+        this.setVisible(!pause.getPause());
+        this.setText( points[0] + "    |   " + points[1]);
     }
 }
