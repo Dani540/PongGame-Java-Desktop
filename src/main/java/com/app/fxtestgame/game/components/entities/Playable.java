@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.List;
 
-public class Playable extends Player{
+public class Playable extends Player {
 
     private int moveDirection;
 
@@ -19,10 +19,10 @@ public class Playable extends Player{
     }
 
 
-    public void setMovement(Scene scene){
+    public void setMovement(Scene scene) {
 
         // Movimiento por teclado
-        scene.setOnKeyPressed( event -> {
+        scene.setOnKeyPressed(event -> {
             if (upKeyboards(event)) moveDirection = 1;
             if (downKeyboards(event)) moveDirection = -1;
         });
@@ -35,7 +35,7 @@ public class Playable extends Player{
 
         this.setOnMouseDragged(mouseEvent -> {
             scene.setCursor(Cursor.NONE);
-            this.setLayoutY( this.getLayoutY() + mouseEvent.getY());
+            this.setLayoutY(this.getLayoutY() + mouseEvent.getY());
         });
 
         this.setOnMouseReleased(mouseDragEvent -> {
@@ -63,18 +63,18 @@ public class Playable extends Player{
 
     @Override
     public void render() {
-        switch (moveDirection){
+        switch (moveDirection) {
             case 1 -> this.setLayoutY(this.getLayoutY() - SPEED);
-            case -1 ->this.setLayoutY(this.getLayoutY() + SPEED);
+            case -1 -> this.setLayoutY(this.getLayoutY() + SPEED);
         }
         renderRangeOfMovement();
     }
 
     private void renderRangeOfMovement() {
-        boolean topMax = this.getLayoutY() >= PongGame.HEIGHT - HEIGHT*2.23;
+        boolean topMax = this.getLayoutY() >= PongGame.HEIGHT - HEIGHT * 2.23;
         boolean topMin = this.getLayoutY() < 0;
 
-        if (topMax) this.setLayoutY( PongGame.HEIGHT - HEIGHT*2.23 );
+        if (topMax) this.setLayoutY(PongGame.HEIGHT - HEIGHT * 2.23);
         if (topMin) this.setLayoutY(0);
     }
 }

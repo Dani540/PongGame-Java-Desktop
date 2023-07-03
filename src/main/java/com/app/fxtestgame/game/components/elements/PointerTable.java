@@ -9,30 +9,33 @@ import javafx.scene.control.Label;
 public class PointerTable extends Label implements Element {
 
     private final double HEIGHT, WIDTH;
-    private final int [] points;
+    private final int[] points;
     private final Pause pause;
 
-    public PointerTable(Pause pause){
+    public PointerTable(Pause pause) {
         this.pause = pause;
         HEIGHT = 30;
         WIDTH = HEIGHT * 2.5;
         points = new int[2];
         initStyle();
         refresh();
-        this.setLayoutX(PongGame.WIDTH/2 - WIDTH /2);
+        this.setLayoutX(PongGame.WIDTH / 2 - WIDTH / 2);
         this.setLayoutY(HEIGHT);
     }
+
     private void initStyle() {
         this.setStyle(StylesRepo.getLabelStyle(WIDTH, HEIGHT));
     }
-    public void addPoint(Side side){
+
+    public void addPoint(Side side) {
         if (side.equals(Side.LEFT)) points[0]++;
         else points[1]++;
         refresh();
     }
+
     @Override
     public void refresh() {
         this.setVisible(!pause.getPause());
-        this.setText( points[0] + "    |   " + points[1]);
+        this.setText(points[0] + "    |   " + points[1]);
     }
 }

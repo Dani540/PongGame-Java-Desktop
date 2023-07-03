@@ -1,3 +1,7 @@
+/**
+ * Esta clase se encarga de renderizar todos los componentes necesarios del juego.
+ */
+
 package com.app.fxtestgame.game.controller;
 
 import com.app.fxtestgame.game.components.Component;
@@ -17,21 +21,21 @@ public class Render {
     private final List<Component> components;
     private final Pause pause;
 
-    public Render(Component ... components) {
+    public Render(Component... components) {
         this.components = List.of(components);
-        pause = (Pause) Stream.of(components).filter(n -> n instanceof  Pause).toList().get(0);
+        pause = (Pause) Stream.of(components).filter(n -> n instanceof Pause).toList().get(0);
     }
 
-    public Render(List<Component> components) {
-        this.components = components;
-        pause = (Pause) Stream.of(this.components).filter(n -> n instanceof Pause).toList().get(0);
-    }
-
+    /**
+     * Es el metodo que renderiza el juego, contiene el bucle principal.
+     * La renderizacion se basa en la actualizacion de los componentes
+     * segun la pausa del juego.
+     */
     public void renderer() {
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if (!pause.getPause()) components.forEach(n->{
+                if (!pause.getPause()) components.forEach(n -> {
                     if (n instanceof Entity e) e.render();
                 });
             }
@@ -42,11 +46,11 @@ public class Render {
     public void setPauseControl(AnchorPane pane) {
         pane.requestFocus();
         pane.setOnKeyPressed(event -> {
-            if ( pauseKeyboards(event) ){
-                pause.setPause( !pause.getPause() );
-                pane.getChildren().forEach(n->{
+            if (pauseKeyboards(event)) {
+                pause.setPause(!pause.getPause());
+                pane.getChildren().forEach(n -> {
                     // La idea es que con un userdata se controlen los componentes pero de momento es a pelo
-                    if      (n instanceof Entity aux)  ((Label)aux).setVisible(!pause.getPause());
+                    if      (n instanceof Entity aux) ((Label) aux).setVisible(!pause.getPause());
                     else if (n instanceof Element aux) aux.refresh();
                 });
             }

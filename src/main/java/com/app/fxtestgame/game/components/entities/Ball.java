@@ -9,20 +9,21 @@ import javafx.scene.control.Label;
 import java.util.List;
 import java.util.Random;
 
-public class Ball extends Label implements Entity{
+public class Ball extends Label implements Entity {
     private final List<Entity> entities;
     private final PointerTable pointerTable;
     private final double SIZE, ANGLE, OUTSIDERANGE, SPEEDINCREMENT;
     private double speed;
     private int directionX, directionY;
-    public Ball(PointerTable pointerTable, Entity ... entities){
+
+    public Ball(PointerTable pointerTable, Entity... entities) {
         this.pointerTable = pointerTable;
         this.entities = List.of(entities);
         SIZE = 15;
         speed = 4;
         SPEEDINCREMENT = 0.2;
         ANGLE = 25;
-        OUTSIDERANGE = SIZE*2;
+        OUTSIDERANGE = SIZE * 2;
 
         initBall();
     }
@@ -60,16 +61,16 @@ public class Ball extends Label implements Entity{
         boolean topMax = this.getLayoutX() <= -OUTSIDERANGE;
         boolean topMin = this.getLayoutX() >= PongGame.WIDTH + OUTSIDERANGE;
 
-        if (topMax || topMin){
+        if (topMax || topMin) {
             restartPosition();
-            if (speed > 4) speed -= (speed *0.3);
-            pointerTable.addPoint( topMax? Side.RIGHT : Side.LEFT);
+            if (speed > 4) speed -= (speed * 0.3);
+            pointerTable.addPoint(topMax ? Side.RIGHT : Side.LEFT);
         }
     }
 
     private void outsideY() {
         boolean topMax = this.getLayoutY() <= 0;
-        boolean topMin = this.getLayoutY() >= PongGame.HEIGHT - SIZE*3.5;
+        boolean topMin = this.getLayoutY() >= PongGame.HEIGHT - SIZE * 3.5;
 
         if (topMax || topMin) directionY = -directionY;
     }
@@ -77,12 +78,12 @@ public class Ball extends Label implements Entity{
     private void restartPosition() {
         this.setLayoutX(PongGame.WIDTH / 2 - SIZE / 2);
         this.setLayoutY(PongGame.HEIGHT / 2 - SIZE);
-        directionX = new Random().nextBoolean()? -1 : 1;
-        directionY = new Random().nextBoolean()? -1 : 1;
+        directionX = new Random().nextBoolean() ? -1 : 1;
+        directionY = new Random().nextBoolean() ? -1 : 1;
     }
 
     private void obsCollision(List<Entity> entities) {
-        if ( entities.stream().anyMatch(this::collision) ){
+        if (entities.stream().anyMatch(this::collision)) {
             speed += SPEEDINCREMENT;
             directionX = -directionX;
         }

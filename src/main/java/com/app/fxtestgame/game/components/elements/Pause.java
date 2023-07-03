@@ -4,9 +4,9 @@ import com.app.fxtestgame.game.PongGame;
 import com.app.fxtestgame.game.repo.StylesRepo;
 import javafx.scene.control.Label;
 
-public class Pause extends Label implements Element{
+public class Pause extends Label implements Element {
 
-    private final double HEIGHT = 60, WIDTH = HEIGHT *2.5;
+    private final double HEIGHT = 60, WIDTH = HEIGHT * 2.5;
     private boolean isPause;
 
     public Pause() {
@@ -17,8 +17,8 @@ public class Pause extends Label implements Element{
 
         this.setVisible(isPause);
 
-        this.setLayoutX(PongGame.WIDTH/2 - WIDTH /2);
-        this.setLayoutY(PongGame.HEIGHT/2 - HEIGHT);
+        this.setLayoutX(PongGame.WIDTH / 2 - WIDTH / 2);
+        this.setLayoutY(PongGame.HEIGHT / 2 - HEIGHT);
     }
 
     private void initStyle() {
